@@ -1,21 +1,32 @@
 button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+.primary-button,
+.secondary-button {
 	border: 1px solid;
-	border-color: $color__border-button;
-	border-radius: 3px;
-	background: $color__background-button;
-	color: rgba(0, 0, 0, 0.8);
+	border-color: $color__white;
+	border-radius: 6px;
+	font-weight: 200;
+	font-size: 18px;
+}
+
+.primary-button,
+.secondary-button {
+	display: inline-block;
+	background: $color__add1;
+	color: $color__white;
 	line-height: 1;
 	padding: 0.6em 1em 0.4em;
+	font-size: 18px;
+	text-decoration: none;
+	padding: 12px 25px;
 
-	&:hover {
-		border-color: $color__border-button-hover;
+	&:visited {
+		color: $color__white;
 	}
+}
 
-	&:active,
-	&:focus {
-		border-color: $color__border-button-focus;
-	}
+.primary-button {
+	background-color: transparent;
 }

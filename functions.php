@@ -143,6 +143,10 @@ function bat_max_scripts() {
 
 	wp_enqueue_script( 'bat-max-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
+	wp_enqueue_script( 'bat-max-galleries', get_template_directory_uri() . '/js/galleries.js', array('load_glide'), _S_VERSION, true );
+
+	wp_enqueue_script( 'load_glide', get_template_directory_uri() . '/js/libs/glide.min.js', array(), _S_VERSION, true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

@@ -1,10 +1,10 @@
 body {
 	--navbar-size: #{$size__navbar-mobile};
-	--navbar-offset: #{$size__navbar-mobile + 20px};
+	--navbar-offset: #{$size__navbar-mobile + 30px};
 
 	@media (min-width: 400px) {
 		--navbar-size: #{$size__navbar-desktop};
-		--navbar-offset: #{$size__navbar-desktop + 20px};
+		--navbar-offset: #{$size__navbar-desktop + 30px};
 	}
 
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
