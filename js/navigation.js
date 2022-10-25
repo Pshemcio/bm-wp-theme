@@ -6,20 +6,29 @@
  */
 ( function() {
 	const siteNavigation = document.getElementById( 'site-navigation' );
+	const languageSwitchers = document.querySelectorAll( ' .language-switcher ' );
+	languageSwitchers.forEach( ( switcher ) => {
+		const languageSwitcher = switcher.querySelector( '.language-switcher-list' );
+		const languageToggle = switcher.querySelector( '.single-language.current' );
+
+		languageToggle.addEventListener( 'click', () => {
+			languageSwitcher.classList.toggle( 'is-shown' );
+		} );
+	} );
 
 	// Return early if the navigation doesn't exist.
 	if ( ! siteNavigation ) {
 		return;
 	}
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+	const button = document.getElementById( 'burger' );
 
 	// Return early if the button doesn't exist.
 	if ( 'undefined' === typeof button ) {
 		return;
 	}
 
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+	const menu = document.getElementById( 'main-menu' );
 
 	// Hide menu toggle button if menu is empty and return early.
 	if ( 'undefined' === typeof menu ) {
@@ -34,6 +43,10 @@
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {
 		siteNavigation.classList.toggle( 'toggled' );
+		languageSwitchers.forEach( ( switcher ) => {
+			const languageSwitcher = switcher.querySelector( '.language-switcher-list' );
+			languageSwitcher.classList.remove( 'is-shown' );
+		} );
 
 		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
 			button.setAttribute( 'aria-expanded', 'false' );

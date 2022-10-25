@@ -21,7 +21,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
-
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -49,19 +48,14 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Alignments
 
 --------------------------------------------------------------*/
-
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-
 /* Normalize
 --------------------------------------------- */
-
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
 /* Document
 	 ========================================================================== */
-
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -73,7 +67,6 @@ html {
 
 /* Sections
 	 ========================================================================== */
-
 /**
  * Remove the margin in all browsers.
  */
@@ -99,7 +92,6 @@ h1 {
 
 /* Grouping content
 	 ========================================================================== */
-
 /**
  * 1. Add the correct box sizing in Firefox.
  * 2. Show the overflow in Edge and IE.
@@ -121,7 +113,6 @@ pre {
 
 /* Text-level semantics
 	 ========================================================================== */
-
 /**
  * Remove the gray background on active links in IE 10.
  */
@@ -187,7 +178,6 @@ sup {
 
 /* Embedded content
 	 ========================================================================== */
-
 /**
  * Remove the border on images inside links in IE 10.
  */
@@ -197,7 +187,6 @@ img {
 
 /* Forms
 	 ========================================================================== */
-
 /**
  * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
@@ -235,9 +224,9 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+[type='button'],
+[type='reset'],
+[type='submit'] {
 	-webkit-appearance: button;
 }
 
@@ -245,9 +234,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
 }
@@ -256,9 +245,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
 	outline: 1px dotted ButtonText;
 }
 
@@ -302,8 +291,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'],
+[type='radio'] {
 	box-sizing: border-box;
 	padding: 0;
 }
@@ -311,8 +300,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
 	height: auto;
 }
 
@@ -320,7 +309,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type="search"] {
+[type='search'] {
 	-webkit-appearance: textfield;
 	outline-offset: -2px;
 }
@@ -328,7 +317,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
@@ -343,7 +332,6 @@ textarea {
 
 /* Interactive
 	 ========================================================================== */
-
 /*
  * Add the correct display in Edge, IE 10+, and Firefox.
  */
@@ -360,7 +348,6 @@ summary {
 
 /* Misc
 	 ========================================================================== */
-
 /**
  * Add the correct display in IE 10+.
  */
@@ -377,7 +364,6 @@ template {
 
 /* Box sizing
 --------------------------------------------- */
-
 /* Inherit box-sizing to more easily change it's value on a component level.
 @link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 *,
@@ -393,7 +379,6 @@ html {
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
-
 /* Typography
 --------------------------------------------- */
 body,
@@ -403,7 +388,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
 }
@@ -472,7 +457,17 @@ big {
 /* Elements
 --------------------------------------------- */
 body {
+	--navbar-size: 70px;
+	--navbar-offset: 90px;
 	background: #fff;
+	padding-top: var(--navbar-size);
+}
+
+@media (min-width: 400px) {
+	body {
+		--navbar-size: 60px;
+		--navbar-offset: 80px;
+	}
 }
 
 hr {
@@ -484,11 +479,12 @@ hr {
 
 ul,
 ol {
-	margin: 0 0 1.5em 3em;
+	margin: 0;
+	padding: 0;
 }
 
 ul {
-	list-style: disc;
+	list-style: none;
 }
 
 ol {
@@ -540,9 +536,7 @@ a:visited {
 	color: #800080;
 }
 
-a:hover,
-a:focus,
-a:active {
+a:hover, a:focus, a:active {
 	color: #191970;
 }
 
@@ -550,8 +544,7 @@ a:focus {
 	outline: thin dotted;
 }
 
-a:hover,
-a:active {
+a:hover, a:active {
 	outline: 0;
 }
 
@@ -577,8 +570,7 @@ input[type="submit"]:hover {
 	border-color: #ccc #bbb #aaa;
 }
 
-button:active,
-button:focus,
+button:active, button:focus,
 input[type="button"]:active,
 input[type="button"]:focus,
 input[type="reset"]:active,
@@ -640,105 +632,269 @@ textarea {
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
-
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-
 /* Navigation
 --------------------------------------------- */
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+	padding: 5px 14px;
+	background-color: #fff;
+	border-bottom: 1px solid #c60606;
+}
+
+@media (min-width: 512px) {
+	.site-header {
+		padding: 5px 30px;
+	}
+}
+
+.site-header .site-header-inner {
+	height: var(--navbar-size);
+	max-width: 1400px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.site-header .site-branding {
+	height: 100%;
+	padding: 5px 0;
+}
+
+.site-header .site-branding img {
+	height: 100%;
+}
+
 .main-navigation {
 	display: block;
-	width: 100%;
 }
 
-.main-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 100%;
-	left: -999em;
-	z-index: 99999;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
-}
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	display: block;
-	left: auto;
-}
-
-.main-navigation ul ul a {
-	width: 200px;
-}
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
-}
-
-.main-navigation li {
-	position: relative;
-}
-
-.main-navigation a {
-	display: block;
-	text-decoration: none;
-}
-
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-
-	.menu-toggle {
-		display: none;
-	}
-
-	.main-navigation ul {
+@media (min-width: 840px) {
+	.main-navigation {
 		display: flex;
 	}
 }
 
-.site-main .comment-navigation,
-.site-main
-.posts-navigation,
-.site-main
-.post-navigation {
-	margin: 0 0 1.5em;
+.main-navigation.toggled #main-menu {
+	transform: translateX(0);
+	opacity: 1;
 }
 
-.comment-navigation .nav-links,
-.posts-navigation .nav-links,
-.post-navigation .nav-links {
+.main-navigation.toggled .main-burger::before, .main-navigation.toggled .main-burger::after,
+.main-navigation.toggled .main-burger span {
+	background-color: #c60606;
+}
+
+.main-navigation.toggled .main-burger::before {
+	transform: translate(-62.5%, -50%) rotate(-45deg);
+}
+
+.main-navigation.toggled .main-burger span {
+	transform: translate(130%, -50%);
+}
+
+.main-navigation.toggled .main-burger::after {
+	transform: translate(-62.5%, -50%) rotate(45deg);
+}
+
+.main-navigation #main-menu {
+	position: fixed;
+	top: var(--navbar-size);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff;
+	transform: translateX(100%);
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (min-width: 840px) {
+	.main-navigation #main-menu {
+		position: static;
+		transform: none;
+		transition: none;
+		opacity: 1;
+	}
+}
+
+.main-navigation #main-menu > div,
+.main-navigation #main-menu .main-menu-inner {
+	height: 100%;
+}
+
+.main-navigation .main-burger {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	overflow: hidden;
+	outline: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+@media (min-width: 840px) {
+	.main-navigation .main-burger {
+		display: none;
+	}
+}
+
+.main-navigation .main-burger:hover::before, .main-navigation .main-burger:hover::after,
+.main-navigation .main-burger:hover span, .main-navigation .main-burger:focus::before, .main-navigation .main-burger:focus::after,
+.main-navigation .main-burger:focus span {
+	background-color: #c60606;
+}
+
+.main-navigation .main-burger::before, .main-navigation .main-burger::after,
+.main-navigation .main-burger span {
+	left: 50%;
+	position: absolute;
+	content: '';
+	display: block;
+	height: 2px;
+	width: 70%;
+	background-color: #404040;
+	transform: translate(-50%, -50%);
+	transform-origin: right;
+	transition: transform 0.4s cubic-bezier(1, 0.94, 0.54, 0.95), background-color 0.4s;
+	pointer-events: none;
+}
+
+.main-navigation .main-burger::before {
+	top: 25%;
+}
+
+.main-navigation .main-burger span {
+	top: 50%;
+}
+
+.main-navigation .main-burger::after {
+	top: 75%;
+}
+
+.main-navigation .main-menu-inner {
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
 }
 
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-	flex: 1 0 50%;
+@media (min-width: 840px) {
+	.main-navigation .main-menu-inner {
+		flex-direction: row;
+		padding: 0;
+	}
 }
 
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-	text-align: end;
-	flex: 1 0 50%;
+.main-navigation .main-menu-inner .page_item,
+.main-navigation .main-menu-inner .menu-item {
+	color: #404040;
+}
+
+.main-navigation .main-menu-inner .page_item a,
+.main-navigation .main-menu-inner .menu-item a {
+	display: block;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 22px;
+	font-weight: 200;
+	color: inherit;
+}
+
+@media (min-width: 840px) {
+	.main-navigation .main-menu-inner .page_item a,
+	.main-navigation .main-menu-inner .menu-item a {
+		font-size: 16px;
+		font-size: clamp(15px, 1.4vw, 17px);
+		font-weight: 300;
+	}
+}
+
+.main-navigation .main-menu-inner .page_item.current_page_item,
+.main-navigation .main-menu-inner .menu-item.current_page_item {
+	color: #c60606;
+}
+
+.desktop-language-switcher {
+	display: none;
+	margin-left: 20px;
+	margin-left: clamp(20px, 6vw, 70px);
+}
+
+@media (min-width: 840px) {
+	.desktop-language-switcher {
+		display: block;
+	}
+}
+
+.mobile-language-switcher {
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+@media (min-width: 840px) {
+	.mobile-language-switcher {
+		display: none;
+	}
+}
+
+.language-switcher {
+	position: relative;
+}
+
+.language-switcher .language-switcher-list {
+	display: none;
+	position: absolute;
+	top: 120%;
+	left: 50%;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 5px 20px;
+	transform: translateX(-50%);
+}
+
+.language-switcher .language-switcher-list.is-shown {
+	display: block;
+}
+
+.language-switcher .single-language {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	text-transform: uppercase;
+	font-size: 19px;
+	padding: 0;
+	cursor: pointer;
+}
+
+.language-switcher .single-language.inactive a {
+	text-decoration: none;
+	color: #686868;
+	line-height: 2em;
+}
+
+.language-switcher .single-language.inactive a:hover {
+	color: #c60606;
+}
+
+.language-switcher .single-language.current {
+	width: 2.5em;
+	height: 2.5em;
+	border: 1px solid #c60606;
+	background-color: transparent;
+	font-weight: 500;
+	color: #c60606;
 }
 
 /* Posts and pages
@@ -877,10 +1033,8 @@ textarea {
 /*--------------------------------------------------------------
 # Plugins
 --------------------------------------------------------------*/
-
 /* Jetpack infinite scroll
 --------------------------------------------- */
-
 /* Hide the Posts Navigation and the Footer when Infinite Scroll is in use. */
 .infinite-scroll .posts-navigation,
 .infinite-scroll.neverending .site-footer {
@@ -895,10 +1049,8 @@ textarea {
 /*--------------------------------------------------------------
 # Utilities
 --------------------------------------------------------------*/
-
 /* Accessibility
 --------------------------------------------- */
-
 /* Text meant only for screen readers. */
 .screen-reader-text {
 	border: 0;
@@ -941,20 +1093,16 @@ textarea {
 /* Alignments
 --------------------------------------------- */
 .alignleft {
-
 	/*rtl:ignore*/
 	float: left;
-
 	/*rtl:ignore*/
 	margin-right: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .alignright {
-
 	/*rtl:ignore*/
 	float: right;
-
 	/*rtl:ignore*/
 	margin-left: 1.5em;
 	margin-bottom: 1.5em;
@@ -967,3 +1115,5 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+/*# sourceMappingURL=style.css.map */

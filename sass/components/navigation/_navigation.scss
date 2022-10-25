@@ -1,65 +1,93 @@
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+	padding: 5px 14px;
+	background-color: $color__background-body;
+	border-bottom: 1px solid $color__add1;
+
+	@include breakpoint(xs) {
+		padding: 5px 30px;
+	}
+
+	.site-header-inner {
+		height: var(--navbar-size);
+		max-width: $content__width;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0 auto;
+	}
+
+	.site-branding {
+		height: 100%;
+		padding: 5px 0;
+
+		img {
+			height: 100%;
+		}
+	}
+}
+
 .main-navigation {
 	display: block;
-	width: 100%;
 
-	ul {
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
+	@include breakpoint(sm) {
+		display: flex;
+	}
 
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
-			position: absolute;
-			top: 100%;
-			left: -999em;
-			z-index: 99999;
-
-			ul {
-				left: -999em;
-				top: 0;
-			}
-
-			li {
-
-				&:hover > ul,
-				&.focus > ul {
-					display: block;
-					left: auto;
-				}
-			}
-
-			a {
-				width: 200px;
-			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
-			}
+	&.toggled {
+		#main-menu {
+			transform: translateX(0);
+			opacity: 1;
 		}
 
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
+		.main-burger {
+			&::before,
+			&::after,
+			span {
+				background-color: $color__add1;
+			}
+
+			&::before {
+				transform: translate(-62.5%, -50%) rotate(-45deg);
+			}
+
+			span {
+				transform: translate(130%, -50%);
+			}
+
+			&::after {
+				transform: translate(-62.5%, -50%) rotate(45deg);
+			}
 		}
 	}
 
-	li {
-		position: relative;
+	#main-menu {
+		position: fixed;
+		top: var(--navbar-size);
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: $color__background-body;
+		transform: translateX(100%);
+		opacity: 0;
+		transition: transform 0.3s, opacity 0.3s;
 
-		&:hover > a,
-		&.focus > a {
+		@include breakpoint(sm) {
+			position: static;
+			transform: none;
+			transition: none;
+			opacity: 1;
 		}
-	}
 
-	a {
-		display: block;
-		text-decoration: none;
+		& > div,
+		.main-menu-inner {
+			height: 100%;
+		}
 	}
 
 	.current_page_item > a,
@@ -67,43 +95,95 @@
 	.current_page_ancestor > a,
 	.current-menu-ancestor > a {
 	}
-}
 
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
+	.main-burger {
+		$self: &;
+		position: relative;
+		width: 40px;
+		height: 40px;
+		background-color: transparent;
+		border: none;
+		overflow: hidden;
+		outline: none;
+		padding: 0;
+		cursor: pointer;
 
-@media screen and (min-width: 37.5em) {
+		@include breakpoint(sm) {
+			display: none;
+		}
 
-	.menu-toggle {
-		display: none;
+		&:hover,
+		&:focus {
+			&::before,
+			&::after,
+			span {
+				background-color: $color__add1;
+			}
+		}
+
+		&::before,
+		&::after,
+		span {
+			left: 50%;
+			position: absolute;
+			content: '';
+			display: block;
+			height: 2px;
+			width: 70%;
+			background-color: $color__text-main;
+			transform: translate(-50%, -50%);
+			transform-origin: right;
+			transition: transform 0.4s cubic-bezier(1, 0.94, 0.54, 0.95), background-color 0.4s;
+			pointer-events: none;
+		}
+
+		&::before {
+			top: 25%;
+		}
+
+		span {
+			top: 50%;
+		}
+
+		&::after {
+			top: 75%;
+		}
 	}
 
-	.main-navigation ul {
+	.main-menu-inner {
 		display: flex;
-	}
-}
+		flex-direction: column;
+		justify-content: center;
+		padding: 20px;
 
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
+		@include breakpoint(sm) {
+			flex-direction: row;
+			padding: 0;
+		}
 
-	.site-main & {
-		margin: 0 0 1.5em;
-	}
+		.page_item,
+		.menu-item {
+			color: $color__text-main;
 
-	.nav-links {
-		display: flex;
-	}
+			a {
+				display: block;
+				padding: 10px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 22px;
+				font-weight: 200;
+				color: inherit;
 
-	.nav-previous {
-		flex: 1 0 50%;
-	}
+				@include breakpoint(sm) {
+					font-size: 16px;
+					font-size: clamp(15px, 1.4vw, 17px);
+					font-weight: 300;
+				}
+			}
 
-	.nav-next {
-		text-align: end;
-		flex: 1 0 50%;
+			&.current_page_item {
+				color: $color__add1;
+			}
+		}
 	}
 }

@@ -176,3 +176,72 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Duplicate post content from original across translation
+function cw2b_content_copy( $content ) {    
+	if ( isset( $_GET['from_post'] ) ) {
+			$my_post = get_post( $_GET['from_post'] );
+			if ( $my_post )
+					return $my_post->post_content;
+	}
+	return $content;
+}
+add_filter( 'default_content', 'cw2b_content_copy' );
+
+// Duplicate post title from original across translation
+function cw2b_editor_title( $title ) {    
+	if ( isset( $_GET['from_post'] ) ) {
+			$my_post = get_post( $_GET['from_post'] );
+			if ( $my_post )
+					return $my_post->post_title;
+	}
+	return $title;
+}
+add_filter( 'default_title', 'cw2b_editor_title' );
+
+function get_language_switcher() {
+	$lang = array(
+		'dropdown' => false,
+		'show_names' => false,
+		'show_flags' => true,
+		'hide_if_empty' => false,
+		'hide_if_not_translation' => false,
+		'raw' => true
+	);
+	$switcher = pll_the_languages( $lang );
+
+	$first= '';
+	$second = '';
+	$content = '<div id="language-switcher" class="language-switcher"><ul class="language-switcher-list">';
+	// var_dump($switcher);
+	foreach($switcher as $lang){
+		if( $lang['current_lang'] ):
+			$first .= '<button class="single-language current">' . $lang['slug'] . '</button>';
+		else:
+			$second .= '<li class="single-language inactive"><a href="' . $lang['url'] . '">' . $lang['slug'] . '</a></li>';
+		endif;
+
+	}
+
+	$content .= $second;
+	$content .= '</ul>';
+	$content .= $first;
+	$content .= '</div>';
+
+	return $content;
+}
+
+$languages = pll_languages_list();
+foreach($languages as $lang){
+	// Register options page.
+	$option_page = acf_add_options_page(array(
+		'page_title'    => sprintf(__('Ustawienia motywu (%s)', 'kfx_starter_theme'), $lang),
+		'menu_title'    => sprintf(__('Ustawienia motywu (%s)', 'kfx_starter_theme'), $lang),
+		'menu_slug'     => 'kfx-starter-settings-' . $lang,
+		'post_id'       => 'kfx-starter-settings-' . $lang,
+		'capability'    => 'edit_posts',
+		'icon_url'      => 'dashicons-admin-home',
+		'redirect'      => false,
+	));
+}
+
+function wpb_add_google_fonts() {    wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap', false );    }        add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' ); ?>
