@@ -12,7 +12,9 @@
 		const languageToggle = switcher.querySelector( '.single-language.current' );
 
 		languageToggle.addEventListener( 'click', () => {
-			languageSwitcher.classList.toggle( 'is-shown' );
+			if ( languageSwitcher.childNodes.length ) {
+				languageSwitcher.classList.toggle( 'is-shown' );
+			}
 		} );
 	} );
 

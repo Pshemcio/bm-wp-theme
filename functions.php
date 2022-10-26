@@ -147,6 +147,8 @@ function bat_max_scripts() {
 
 	wp_enqueue_script( 'load_glide', get_template_directory_uri() . '/js/libs/glide.min.js', array(), _S_VERSION, true );
 
+	wp_enqueue_script( 'load_lightbox', get_template_directory_uri() . '/js/libs/fslightbox.js', array(), _S_VERSION, true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -207,7 +209,7 @@ function get_language_switcher() {
 		'dropdown' => false,
 		'show_names' => false,
 		'show_flags' => true,
-		'hide_if_empty' => false,
+		'hide_if_empty' => true,
 		'hide_if_not_translation' => false,
 		'raw' => true
 	);
@@ -238,14 +240,85 @@ $languages = pll_languages_list();
 foreach($languages as $lang){
 	// Register options page.
 	$option_page = acf_add_options_page(array(
-		'page_title'    => sprintf(__('Ustawienia motywu (%s)', 'kfx_starter_theme'), $lang),
-		'menu_title'    => sprintf(__('Ustawienia motywu (%s)', 'kfx_starter_theme'), $lang),
-		'menu_slug'     => 'kfx-starter-settings-' . $lang,
-		'post_id'       => 'kfx-starter-settings-' . $lang,
+		'page_title'    => sprintf(__('Ustawienia motywu (%s)', 'bat-max'), $lang),
+		'menu_title'    => sprintf(__('Ustawienia motywu (%s)', 'bat-max'), $lang),
+		'menu_slug'     => 'bat-max-settings-' . $lang,
+		'post_id'       => 'bat-max-settings-' . $lang,
 		'capability'    => 'edit_posts',
 		'icon_url'      => 'dashicons-admin-home',
 		'redirect'      => false,
 	));
 }
 
+acf_add_options_page(array(
+	'page_title'    => __('Galeria'),
+	'menu_title'    => __('Galeria'),
+	'menu_slug'     => 'bat-max-gallery',
+	'post_id'       => 'bat-max-gallery',
+	'capability'    => 'edit_posts',
+	'icon_url'      => 'dashicons-format-gallery',
+	'redirect'      => false,
+));
+
 function wpb_add_google_fonts() {    wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap', false );    }        add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' ); ?>
+
+<?php 
+// Fix a long-standing issue with ACF, where fields sometimes aren't shown
+// in previews (ie. from Preview > Open in new tab).
+if ( class_exists( 'acf_revisions' ) )
+{
+	// Reference to ACF's <code>acf_revisions</code> class
+	// We need this to target its method, acf_revisions::acf_validate_post_id
+	$acf_revs_cls = acf()->revisions;
+
+	// This hook is added the ACF file: includes/revisions.php:36 (in ACF PRO v5.11)
+	remove_filter( 'acf/validate_post_id', array( $acf_revs_cls, 'acf_validate_post_id', 10 ) );
+}
+
+function get_gallery_with_pagination($items_per_page_setting) {
+	if(!$items_per_page_setting) return ['pagination' => null, 'images_array' => null];
+
+	$gallery = get_fields('bat-max-gallery');
+	$gallery = $gallery['gallery'];
+	$images = array();
+	$items_per_page = $items_per_page_setting;
+	$total_items = count($gallery);
+	$size = 'full'; 
+	$total_pages = ceil($total_items / $items_per_page);
+	
+	if(get_query_var('paged')){
+			$current_page = get_query_var('paged');
+	}
+	elseif (get_query_var('page')) {
+			$current_page = get_query_var('page');
+	}
+	else{
+			$current_page = 1;
+	}
+	$starting_point = (($current_page-1)*$items_per_page);
+	
+	if($gallery){
+			$images = array_slice($gallery,$starting_point,$items_per_page);
+	}
+
+	$images_arr = [];
+
+	if(!empty($images)){
+		foreach( $images as $image ):
+			array_push($images_arr, ['url'=>$image['url'], 'alt'=>$image['alt']]);
+		endforeach;
+	}
+	
+	$big = 999999999;
+	$pagination = paginate_links(array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => $current_page,
+			'total' => $total_pages,
+	));
+
+	return ['pagination' => $pagination, 'images_array' => $images_arr];
+}
+
+$current_language = pll_current_language( 'slug' );
+$options = get_fields('bat-max-settings-'.$current_language);
