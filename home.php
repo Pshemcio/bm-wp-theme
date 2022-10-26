@@ -64,37 +64,42 @@ get_header();
     <?php endif; ?>
     <?php
     if ($fields['split_section']): ?>
-      <section>
+      <section class='default-section split-section'>
         <?php foreach ( $fields['split_section'] as $field ): ?>
-          <article>
-            <img src='<?php echo $field['img']['url'] ?>' alt='<?php echo $field['img']['alt'] ?>' />
-            <div>
-              <h2><?php echo $field['heading'] ?></h2>
-              <p><?php echo $field['lead'] ?></p>
+          <article class='split-section-inner'>
+            <div class='split-section-content'>
+              <h2 class='main-heading'><span><?php echo $field['heading'] ?></span></h2>
+              <div class='arrows-list'><?php echo $field['lead'] ?></div>
             </div>
+            <img src='<?php echo $field['img']['url'] ?>' alt='<?php echo $field['img']['alt'] ?>' />
           </article>
         <?php endforeach; ?>
       </section>
     <?php endif; ?>
     <?php
     if ($fields['bg_section']['list']): ?>
-      <section>
-        <h2><?php echo $fields['bg_section']['heading'] ?></h2>
-        <?php foreach ( $fields['bg_section']['list'] as $field ): ?>
-          <article>
-            <img src='<?php echo $field['icon'] ?>' alt='' />
-            <div>
-              <h4><?php echo $field['heading'] ?></h4>
-              <p><?php echo $field['lead'] ?></p>
-            </div>
-          </article>
-        <?php endforeach; ?>
+      <section class='default-section bg-section'>
+        <h2 class='main-heading'><span><?php echo $fields['bg_section']['heading'] ?></span></h2>
+        <ul>
+          <?php foreach ( $fields['bg_section']['list'] as $field ): ?>
+            <li>
+              <img src='<?php echo $field['icon'] ?>' alt='' />
+              <div class='bg-section-content'>
+                <h4><?php echo $field['heading'] ?></h4>
+                <p><?php echo $field['lead'] ?></p>
+              </div>
+            </li>
+          <?php endforeach; ?>
+        </ul>
       </section>
     <?php endif; ?>
     <?php
     if ($fields['circle_section']['list']): ?>
-      <section>
-        <h2><?php echo $fields['circle_section']['heading'] ?></h2>
+      <section class='default-section circle-section'>
+        <h2 class='main-heading'><span><?php echo $fields['circle_section']['heading'] ?></span></h2>
+        <?php if ($fields['circle_section']['lead']): ?>
+          <p class='main-lead'><?php echo $fields['circle_section']['lead'] ?></p>
+        <?php endif; ?>
         <ul>
           <?php foreach ( $fields['circle_section']['list'] as $field ): ?>
             <li><?php echo $field['lead'] ?></li>
@@ -104,9 +109,12 @@ get_header();
     <?php endif; ?>
     <?php
     if ($section_subsoil['regular_list']['list']): ?>
-      <section>
-        <h2><?php echo $section_subsoil['regular_list']['heading'] ?></h2>
-        <ul>
+      <section class='default-section subsoil-regular-section'>
+        <h2 class='main-heading'><span><?php echo $section_subsoil['regular_list']['heading'] ?></span></h2>
+        <?php if ($section_subsoil['regular_list']['lead']): ?>
+          <p class='main-lead'><?php echo $section_subsoil['regular_list']['lead'] ?></p>
+        <?php endif; ?>
+        <ul class='arrows-list'>
           <?php foreach ( $section_subsoil['regular_list']['list'] as $field ): ?>
             <li><?php echo $field['item'] ?></li>
           <?php endforeach; ?>
@@ -115,15 +123,18 @@ get_header();
     <?php endif; ?>
     <?php
     if ($section_subsoil['images_list']['list']): ?>
-      <section>
-        <h2><?php echo $section_subsoil['images_list']['heading'] ?></h2>
+      <section class='default-section subsoil-images-section'>
+        <h2 class='main-heading'><span><?php echo $section_subsoil['images_list']['heading'] ?></span></h2>
+        <?php if ($section_subsoil['images_list']['lead']): ?>
+          <p class='main-lead'><?php echo $section_subsoil['images_list']['lead'] ?></p>
+        <?php endif; ?>
         <ul>
           <?php foreach ( $section_subsoil['images_list']['list'] as $field ): ?>
             <li>
-              <img src='<?php echo $field['image']['url'] ?>' alt='<?php echo $field['image']['alt'] ?>' />
               <span>
                 <?php echo $field['lead'] ?>
               </span>
+              <img src='<?php echo $field['image']['url'] ?>' alt='<?php echo $field['image']['alt'] ?>' />
             </li>
           <?php endforeach; ?>
         </ul>
@@ -131,8 +142,8 @@ get_header();
     <?php endif; ?>
     <?php
     if ($gallery['images_array']): ?>
-      <section>
-        <h2><?php echo $options['gallery_heading'] ?></h2>
+      <section class='default-section home-gallery-section'>
+        <h2 class='main-heading'><span><?php echo $options['gallery_heading'] ?></span></h2>
         <div id='home-gallery-slider' class="glide home-gallery-slider">
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
@@ -157,7 +168,7 @@ get_header();
     <?php endif; ?>
     <?php
     if ($fields['cta']): ?>
-      <section>
+      <section class='default-section cta-section'>
         <ul>
           <?php foreach ( $fields['cta'] as $field ): ?>
             <li>

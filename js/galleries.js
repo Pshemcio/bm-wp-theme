@@ -29,7 +29,7 @@
 	if ( homeGallerySlider ) {
 		new Glide( '#home-gallery-slider', {
 			type: 'carousel',
-			gap: 0,
+			gap: 20,
 			dragThreshold: false,
 			swipeThreshold: false,
 			perView: 4,
