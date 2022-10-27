@@ -76,21 +76,24 @@ get_header();
         <?php endforeach; ?>
       </section>
     <?php endif; ?>
-    <?php
+    <?php 
     if ($fields['bg_section']['list']): ?>
       <section class='default-section bg-section'>
-        <h2 class='main-heading'><span><?php echo $fields['bg_section']['heading'] ?></span></h2>
-        <ul>
-          <?php foreach ( $fields['bg_section']['list'] as $field ): ?>
-            <li>
-              <img src='<?php echo $field['icon'] ?>' alt='' />
-              <div class='bg-section-content'>
-                <h4><?php echo $field['heading'] ?></h4>
-                <p><?php echo $field['lead'] ?></p>
-              </div>
-            </li>
-          <?php endforeach; ?>
-        </ul>
+        <div class='bg-section-content'>
+          <h2 class='main-heading'><span><?php echo $fields['bg_section']['heading'] ?></span></h2>
+          <ul>
+            <?php foreach ( $fields['bg_section']['list'] as $field ): ?>
+              <li>
+                <img src='<?php echo $field['icon'] ?>' alt='' />
+                <div class='bg-section-list-content'>
+                  <h4><?php echo $field['heading'] ?></h4>
+                  <p><?php echo $field['lead'] ?></p>
+                </div>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <img class='bg-section-image' src='<?php echo $fields['bg_section']['bg']['url'] ?>' alt='' />
       </section>
     <?php endif; ?>
     <?php
@@ -141,7 +144,7 @@ get_header();
       </section>
     <?php endif; ?>
     <?php
-    if ($gallery['images_array']): ?>
+    if ($chunked_gallery): ?>
       <section class='default-section home-gallery-section'>
         <h2 class='main-heading'><span><?php echo $options['gallery_heading'] ?></span></h2>
         <div id='home-gallery-slider' class="glide home-gallery-slider">
