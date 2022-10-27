@@ -320,5 +320,8 @@ function get_gallery_with_pagination($items_per_page_setting) {
 	return ['pagination' => $pagination, 'images_array' => $images_arr];
 }
 
-$current_language = pll_current_language( 'slug' );
-$options = get_fields('bat-max-settings-'.$current_language);
+function get_options_fields() {
+	$current_language = pll_current_language( 'slug' );
+	$options = get_fields('bat-max-settings-'.$current_language);
+	return $options;	
+}

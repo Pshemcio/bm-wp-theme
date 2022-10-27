@@ -12,7 +12,7 @@ $section_subsoil = $fields['section_subsoil'];
 $gallery = get_gallery_with_pagination(16);
 // $options['gallery_heading']
 $chunked_gallery = array_chunk($gallery['images_array'], 2);
-
+$options = get_options_fields();
 get_header();
 ?>
 

@@ -1,0 +1,9 @@
+.site-footer {
+	background-color: $color__add2;
+	font-weight: 300;
+
+	&,
+	a {
+		color: $color__white;
+	}
+}
