@@ -2,8 +2,80 @@
 	background-color: $color__add2;
 	font-weight: 300;
 
+	.default-section {
+		padding-bottom: 0;
+
+		@include breakpoint(sm) {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+	}
+
+	.main-heading {
+		font-size: 34px;
+		font-weight: 100;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	article {
+		@include breakpoint(sm) {
+			flex-basis: 50%;
+			padding: 20px 0;
+
+			&:last-of-type {
+				padding-left: 50px;
+				padding-left: clamp(50px, 6vw, 100px);
+				border-left: 1px solid $color__white;
+			}
+		}
+	}
+
+	.author-info,
+	.main-heading {
+		flex-basis: 100%;
+	}
+
+	h1 {
+		margin: 0 0 16px;
+		font-weight: 400;
+		text-transform: uppercase;
+	}
+
+	li {
+		font-weight: 200;
+		font-size: clamp(16px, 3vw, 23px);
+
+		&.footer-type-divider {
+			margin-top: 10px;
+		}
+	}
+
 	&,
 	a {
 		color: $color__white;
+	}
+
+	.wpforms-container {
+		margin: 0;
+
+		.wpforms-form {
+			.wpforms-title {
+				font-weight: 200;
+				font-size: 28px;
+			}
+		}
+	}
+
+	.author-info {
+		padding: 14px 0;
+		margin-top: 14px;
+		border-top: 1px solid $color__white;
+		font-size: 13px;
+
+		@include breakpoint(sm) {
+			margin-top: 0;
+		}
 	}
 }

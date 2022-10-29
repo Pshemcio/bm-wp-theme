@@ -1,8 +1,8 @@
 <?php
 /**
- * The template for displaying all pages
+ * The template for displaying home page
  * 
- * Template Name: Home Page
+ * Template Name: Strona główna
  *
  * @package Bat-Max
  */

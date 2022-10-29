@@ -13,8 +13,9 @@ $options = get_options_fields();
 $footer = $options['footer'];
 ?>
 
-	<footer id="colophon" class="site-footer">
+	<footer id="contact" class="site-footer">
 		<section class='default-section'>
+			<h2 class='main-heading'><span><?php echo $footer['title'] ?></span></h2>
 			<article>
 				<h1><?php echo get_bloginfo('name') ?></h1>
 				<ul>
@@ -33,24 +34,20 @@ $footer = $options['footer'];
 						</li>
 					<?php endif; ?>
 					<?php if ($footer['phone_numbers']): ?>
-						<li>
-							<?php foreach ( $footer['phone_numbers'] as $field ): ?>
-								<li>
-									<a href='tel:<?php echo $field['number'] ?>'>
-										<?php echo $field['title'] ?>: <?php echo $field['number'] ?>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</li>
+						<?php foreach ( $footer['phone_numbers'] as $key=>$field ): ?>
+							<li class=<?php echo $key == 0 ? 'footer-type-divider' : '' ?>>
+								<a href='tel:<?php echo $field['number'] ?>'>
+									<?php echo $field['title'] ?>: <?php echo $field['number'] ?>
+								</a>
+							</li>
+						<?php endforeach; ?>
 					<?php endif; ?>
 					<?php if ($footer['add_info']): ?>
-						<li>
-							<?php foreach ( $footer['add_info'] as $field ): ?>
-								<li>
-									<?php echo $field['title'] ?>: <?php echo $field['value'] ?>
-								</li>
-							<?php endforeach; ?>
-						</li>
+						<?php foreach ( $footer['add_info'] as $key=>$field ): ?>
+							<li class=<?php echo $key == 0 ? 'footer-type-divider' : '' ?>>
+								<?php echo $field['title'] ?>: <?php echo $field['value'] ?>
+							</li>
+						<?php endforeach; ?>
 					<?php endif; ?>
 				</ul>
 			</article>

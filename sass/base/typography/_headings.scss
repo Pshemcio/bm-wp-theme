@@ -7,6 +7,17 @@ h6 {
 	clear: both;
 }
 
+.page-header {
+	position: relative;
+	height: 250px;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
 .main-heading {
 	display: flex;
 	align-items: center;
@@ -15,6 +26,21 @@ h6 {
 	font-weight: 300;
 	font-size: 24px;
 	text-align: center;
+
+	&.page-heading {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		margin: 0;
+		padding: 20px;
+		color: $color__white;
+		background-color: rgba(0, 0, 0, 0.2);
+		font-size: 36px;
+		font-weight: 200;
+		text-transform: uppercase;
+	}
 
 	span {
 		margin: 0 20px;
