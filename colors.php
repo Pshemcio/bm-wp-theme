@@ -26,7 +26,7 @@ get_header();
             <ul class='colors-page-list'>
               <?php foreach ( $field['list'] as $item ): ?>
                 <li>
-                  <img src='<?php echo $item['img']; ?>' class='home-header-slide-bg' />
+                  <img src='<?php echo $item['img']; ?>' />
                   <h3><?php echo $item['title']; ?></h3>
                   <h4><?php echo $item['description']; ?></h4>
                 </li>
@@ -40,7 +40,7 @@ get_header();
     if ($fields['info']): ?>
       <section class='default-section colors-page-info'>
         <h3>
-          <img src='<?php echo $fields['info']['icon']; ?>' alt='' class='home-header-slide-bg' />
+          <img src='<?php echo $fields['info']['icon']; ?>' alt='' />
           <span><?php echo $fields['info']['text']; ?></span>
         </h3>
       </section>

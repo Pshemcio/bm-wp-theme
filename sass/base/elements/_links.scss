@@ -8,6 +8,12 @@ a {
 		color: $color__link-visited;
 	}
 
+	&.no-line {
+		&::before {
+			display: none;
+		}
+	}
+
 	&::before {
 		content: '';
 		position: absolute;

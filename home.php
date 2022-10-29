@@ -8,7 +8,6 @@
  */
 $fields = get_fields();
 
-$section_subsoil = $fields['section_subsoil'];
 $gallery = get_gallery_with_pagination(16);
 // $options['gallery_heading']
 $chunked_gallery = array_chunk($gallery['images_array'], 2);
@@ -18,7 +17,7 @@ get_header();
 
 	<main id="primary" class="site-main site-main-home">
     <?php
-    if (isset($fields['home_header'])): ?>
+    if (isset($fields['home_header']) && $fields['home_header']): ?>
       <div id='home-header-slider' class="glide home-header-slider" data-header-autoplay='<?php echo $fields['header_autoplay'] ?>'>
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
@@ -63,7 +62,7 @@ get_header();
       </div>
     <?php endif; ?>
     <?php
-    if ($fields['split_section']): ?>
+    if (isset($fields['split_section']) && $fields['split_section']): ?>
       <section class='default-section split-section'>
         <?php foreach ( $fields['split_section'] as $field ): ?>
           <article class='split-section-inner'>
@@ -77,7 +76,7 @@ get_header();
       </section>
     <?php endif; ?>
     <?php 
-    if ($fields['bg_section']['list']): ?>
+    if (isset($fields['bg_section']['list']) && $fields['bg_section']['list']): ?>
       <section class='default-section bg-section'>
         <div class='bg-section-content'>
           <h2 class='main-heading'><span><?php echo $fields['bg_section']['heading'] ?></span></h2>
@@ -97,7 +96,7 @@ get_header();
       </section>
     <?php endif; ?>
     <?php
-    if ($fields['circle_section']['list']): ?>
+    if (isset($fields['circle_section']['list']) && $fields['circle_section']['list']): ?>
       <section class='default-section circle-section'>
         <h2 class='main-heading'><span><?php echo $fields['circle_section']['heading'] ?></span></h2>
         <?php if ($fields['circle_section']['lead']): ?>
@@ -111,28 +110,28 @@ get_header();
       </section>
     <?php endif; ?>
     <?php
-    if ($section_subsoil['regular_list']['list']): ?>
+    if (isset($fields['section_subsoil']['regular_list']['list']) && $fields['section_subsoil']['regular_list']['list']): ?>
       <section class='default-section subsoil-regular-section'>
-        <h2 class='main-heading'><span><?php echo $section_subsoil['regular_list']['heading'] ?></span></h2>
-        <?php if ($section_subsoil['regular_list']['lead']): ?>
-          <p class='main-lead'><?php echo $section_subsoil['regular_list']['lead'] ?></p>
+        <h2 class='main-heading'><span><?php echo $fields['section_subsoil']['regular_list']['heading'] ?></span></h2>
+        <?php if ($fields['section_subsoil']['regular_list']['lead']): ?>
+          <p class='main-lead'><?php echo $fields['section_subsoil']['regular_list']['lead'] ?></p>
         <?php endif; ?>
         <ul class='arrows-list'>
-          <?php foreach ( $section_subsoil['regular_list']['list'] as $field ): ?>
+          <?php foreach ( $fields['section_subsoil']['regular_list']['list'] as $field ): ?>
             <li><?php echo $field['item'] ?></li>
           <?php endforeach; ?>
         </ul>
       </section>
     <?php endif; ?>
     <?php
-    if ($section_subsoil['images_list']['list']): ?>
+    if (isset($fields['section_subsoil']['images_list']['list']) && $fields['section_subsoil']['images_list']['list']): ?>
       <section class='default-section subsoil-images-section'>
-        <h2 class='main-heading'><span><?php echo $section_subsoil['images_list']['heading'] ?></span></h2>
-        <?php if ($section_subsoil['images_list']['lead']): ?>
-          <p class='main-lead'><?php echo $section_subsoil['images_list']['lead'] ?></p>
+        <h2 class='main-heading'><span><?php echo $fields['section_subsoil']['images_list']['heading'] ?></span></h2>
+        <?php if ($fields['section_subsoil']['images_list']['lead']): ?>
+          <p class='main-lead'><?php echo $fields['section_subsoil']['images_list']['lead'] ?></p>
         <?php endif; ?>
         <ul>
-          <?php foreach ( $section_subsoil['images_list']['list'] as $field ): ?>
+          <?php foreach ( $fields['section_subsoil']['images_list']['list'] as $field ): ?>
             <li>
               <span>
                 <?php echo $field['lead'] ?>
@@ -170,7 +169,7 @@ get_header();
       </section>
     <?php endif; ?>
     <?php
-    if ($fields['cta']): ?>
+    if (isset($fields['cta']) && $fields['cta']): ?>
       <section class='default-section cta-section'>
         <ul>
           <?php foreach ( $fields['cta'] as $field ): ?>
