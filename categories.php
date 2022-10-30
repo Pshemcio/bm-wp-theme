@@ -10,7 +10,7 @@ $fields = get_fields();
 $all_categories = get_categories();
 $categories = [];
 foreach ( $all_categories as $category ) {
-  $thumbnail = get_field( 'img', $category->taxonomy . '_' . $category->term_id );
+  $thumbnail = get_field( 'thumb', $category->taxonomy . '_' . $category->term_id );
   array_push($categories, [
     'name'=>$category->name, 
     'url'=>get_category_link($category),
@@ -27,7 +27,7 @@ get_header();
     </div>
     <?php
     if (count($categories)): ?>
-      <section class='default-section'>
+      <section class='default-section narrower'>
         <ul class='categories-page-list'>
           <?php foreach ( $categories as $category ): ?>
             <li>

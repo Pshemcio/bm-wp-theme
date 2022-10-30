@@ -6,6 +6,7 @@
  */
 ( function() {
 	const homeSlider = document.querySelector( '#home-header-slider' );
+	const singlePostSlider = document.querySelector( '#single-post-slider' );
 	const homeGallerySlider = document.querySelector( '#home-gallery-slider' );
 
 	if ( homeSlider ) {
@@ -15,6 +16,21 @@
 			type: 'carousel',
 			autoplay: homeAutoplay,
 			gap: 0,
+			dragThreshold: false,
+			swipeThreshold: false,
+			breakpoints: {
+				480: {
+					dragThreshold: 120,
+					swipeThreshold: 120
+				},
+			},
+		} ).mount();
+	}
+
+	if ( singlePostSlider ) {
+		new Glide( '#single-post-slider', {
+			type: 'carousel',
+			gap: 10,
 			dragThreshold: false,
 			swipeThreshold: false,
 			breakpoints: {

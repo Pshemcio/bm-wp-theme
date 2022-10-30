@@ -8,44 +8,35 @@
  */
 
 get_header();
+$category = get_category( get_query_var( 'cat' ) );
+$thumbnail = get_field( 'img', $category->taxonomy . '_' . $category->term_id );
+$description = get_field( 'description', $category->taxonomy . '_' . $category->term_id );
 ?>
-
-	<main id="primary" class="site-main site-main-archive">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
+	<main id="primary" class="site-main archive-page">
+		<div class='page-header'>
+      <img src='<?php echo $thumbnail; ?>' alt='' class='page-header-bg' />
+      <h1 class='main-heading page-heading'><span><?php single_term_title(); ?></span></h1>
+    </div>
+		<?php if ( $description) : ?>
+			<section class='default-section narrower archive-page-description'>
+				<?php echo $description ?>
+			</section>
+		<?php endif; ?>
+		<section class='default-section narrower archive-page-list'>
+			<?php if (have_posts()): ?>
+				<ul>
+				<?php while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content', get_post_type() );
+					endwhile; ?>
+				</ul>
+				<?php the_posts_navigation(); ?>
+			<?php endif; ?>
+			<?php if (!have_posts()) {
+				get_template_part( 'template-parts/content', 'none' );
+			} ?>
+		</section>
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();

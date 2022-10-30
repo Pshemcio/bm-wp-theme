@@ -7,34 +7,71 @@
  * @package Bat-Max
  */
 
+$fields = get_fields();
+// var_dump($fields['description']);
+$options = get_options_fields();
+$current_category_text = isset($options['current_category']) ? $options['current_category']: null;
+$current_category = get_the_category(get_the_ID());
 get_header();
+$fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null;
 ?>
 
-	<main id="primary" class="site-main site-main-single">
-
-		<?php
-		while ( have_posts() ) :
-			the_post();
-
-			get_template_part( 'template-parts/content', get_post_type() );
-
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'bat-max' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'bat-max' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
-
-	</main><!-- #main -->
+<main id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
+	<section class='default-section'>
+	<?php
+		if (isset($fields['gallery']) && $fields['gallery']): ?>
+      <div id='single-post-slider' class="glide single-post-slider">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <?php foreach ( $fields['gallery'] as $key=>$field ): ?>
+              <li class="glide__slide single-post-slide">
+								<img src='<?php echo $field['url']; ?>' class='single-post-slide-bg' />
+              </li>
+            <?php endforeach; ?>
+          </ul>
+					<div class="glide__arrows" data-glide-el="controls">
+						<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+						<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+					</div>
+        </div>
+        <div class="glide__bullets single-post-slide-bullets" data-glide-el="controls[nav]">
+          <?php foreach ( $fields['gallery'] as $key=>$field ): ?>
+            <button class="glide__bullet single-post-slide-bullet" data-glide-dir="=<?php echo $key ?>">
+							<img src='<?php echo $field['url']; ?>' />
+						</button>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    <?php else: ?>
+			<img src='<?php echo $fallback_img; ?>' class='single-post-fallback-img' />
+    <?php endif; ?>
+		<div>
+			<h1><?php the_title_attribute(); ?></h1>
+			<p>
+				<?php echo $current_category_text; ?>
+				<a href='<?php echo get_category_link($current_category[0]->term_id) ?>'>
+					<?php echo $current_category[0]->name ?>
+				</a>
+			</p>
+			<?php if (isset($fields['description']) && $fields['description']): ?>
+				<div>
+					<h2>Opis</h2>
+					<div>
+						<?php echo $fields['description'] ?>
+					</div>
+				</div>
+			<?php endif; ?>
+			<?php if (isset($fields['add_info']) && $fields['add_info']): ?>
+				<div>
+					<h2>Dodatkowe informacje</h2>
+					<div>
+						<?php echo $fields['add_info'] ?>
+					</div>
+				</div>
+			<?php endif; ?>
+		</div>
+	</section>
+</main><!-- #post-<?php the_ID(); ?> -->
 
 <?php
-get_sidebar();
 get_footer();

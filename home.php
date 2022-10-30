@@ -152,7 +152,7 @@ get_header();
               <?php foreach ( $chunked_gallery as $key=>$chunk ): ?>
                 <li class="glide__slide home-gallery-slide">
                   <?php foreach ( $chunk as $img ): ?>
-                    <a data-fslightbox="gallery" href="<?php echo $img['url']; ?>">
+                    <a data-fslightbox="gallery" class='no-line' href="<?php echo $img['url']; ?>">
                       <img src='<?php echo $img['url']; ?>' />
                     </a>
                   <?php endforeach; ?>

@@ -3,6 +3,10 @@
 	max-width: 1320px;
 	margin: 0 auto;
 	padding: 30px 20px;
+
+	&.narrower {
+		max-width: 1200px;
+	}
 }
 
 .split-section {

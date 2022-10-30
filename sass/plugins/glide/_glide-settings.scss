@@ -16,6 +16,16 @@
 			background-color: $color__add1 !important;
 		}
 	}
+
+	a {
+		display: block;
+
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 1;
+		}
+	}
 }
 
 .home-header-slider {
