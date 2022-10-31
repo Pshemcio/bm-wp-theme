@@ -22,7 +22,7 @@
 	article {
 		@include breakpoint(sm) {
 			flex-basis: 50%;
-			padding: 20px 0;
+			padding: 20px 0 40px;
 
 			&:last-of-type {
 				padding-left: 50px;
@@ -59,11 +59,21 @@
 
 	.wpforms-container {
 		margin: 0;
+		margin-top: 10px;
+
+		@include breakpoint(sm) {
+			margin-top: 0;
+		}
 
 		.wpforms-form {
 			.wpforms-title {
 				font-weight: 200;
 				font-size: 28px;
+			}
+
+			.wpforms-error {
+				color: $color__error;
+				border-color: $color__error !important;
 			}
 		}
 	}

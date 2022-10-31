@@ -112,6 +112,15 @@
 			margin-top: 10px;
 			margin-top: clamp(20px, 2vw, 30px);
 		}
+
+		.home-header-slide-buttons {
+			display: flex;
+			flex-wrap: wrap;
+
+			a {
+				margin: 4px 12px 4px 0;
+			}
+		}
 	}
 }
 

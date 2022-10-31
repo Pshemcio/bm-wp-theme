@@ -1470,7 +1470,7 @@ textarea {
 @media (min-width: 840px) {
 	.site-footer article {
 		flex-basis: 50%;
-		padding: 20px 0;
+		padding: 20px 0 40px;
 	}
 	.site-footer article:last-of-type {
 		padding-left: 50px;
@@ -1506,11 +1506,23 @@ textarea {
 
 .site-footer .wpforms-container {
 	margin: 0;
+	margin-top: 10px;
+}
+
+@media (min-width: 840px) {
+	.site-footer .wpforms-container {
+		margin-top: 0;
+	}
 }
 
 .site-footer .wpforms-container .wpforms-form .wpforms-title {
 	font-weight: 200;
 	font-size: 28px;
+}
+
+.site-footer .wpforms-container .wpforms-form .wpforms-error {
+	color: #ff568c;
+	border-color: #ff568c !important;
 }
 
 .site-footer .author-info {
@@ -1720,6 +1732,15 @@ textarea {
 .home-header-slider .home-header-slide-content p {
 	margin-top: 10px;
 	margin-top: clamp(20px, 2vw, 30px);
+}
+
+.home-header-slider .home-header-slide-content .home-header-slide-buttons {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.home-header-slider .home-header-slide-content .home-header-slide-buttons a {
+	margin: 4px 12px 4px 0;
 }
 
 .home-gallery-slider .glide__bullets {

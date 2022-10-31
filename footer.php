@@ -56,10 +56,7 @@ $footer = isset($options['footer']) ? $options['footer']: null;
 					<?php echo do_shortcode('[wpforms id="'.$footer['contact_form_id'].'" title="true" description="true"]');?>
 				</article>
 				<div class="author-info">
-					©<?php echo date("Y") ?> Bat-Max. All rights reserved. | Designed and powered by 
-					<a href="https://przemekmajka.pl/" target='_blank'  rel="noopener noreferrer">
-						Pshemcio
-					</a>
+					©<?php echo date("Y") ?> Bat-Max. All rights reserved.
 				</div>
 			<?php endif; ?>
 		</section><!-- .site-info -->
