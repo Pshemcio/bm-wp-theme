@@ -1,4 +1,37 @@
 .single-post {
+	.single-post-content {
+		@include breakpoint(md) {
+			display: grid;
+			grid-template-columns: 600px 1fr;
+			column-gap: 40px;
+			column-gap: clamp(40px, 8vw, 80px);
+			padding-top: 60px;
+
+			h1 {
+				margin-top: 0;
+			}
+		}
+	}
+
+	h3 {
+		color: $color__add1;
+		font-weight: 500;
+	}
+
+	.single-post-fallback-img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 200px;
+		height: 60vw;
+		max-height: 500px;
+		border: 1px solid $color__add1;
+
+		img {
+			width: 120px;
+		}
+	}
+
 	.single-post-slider {
 		.single-post-slide {
 			a {

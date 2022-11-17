@@ -1078,6 +1078,10 @@ textarea {
 	padding: 5px 0;
 }
 
+.site-header .site-branding:hover::before {
+	display: none;
+}
+
 .site-header .site-branding img {
 	height: 100%;
 }
@@ -1975,6 +1979,23 @@ textarea {
 	margin: 20px 0;
 }
 
+.archive-page .archive-page-list ul li {
+	position: relative;
+	isolation: isolate;
+}
+
+.archive-page .archive-page-list ul li .post-price {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background-color: #fff;
+	padding: 4px 8px;
+	border-right: 1px solid #c60606;
+	border-bottom: 1px solid #c60606;
+	font-size: 15px;
+}
+
 @media (min-width: 512px) {
 	.archive-page .archive-page-list ul {
 		grid-template-columns: repeat(2, 1fr);
@@ -2009,6 +2030,38 @@ textarea {
 	display: block;
 	padding: 10px;
 	border-top: 1px solid #c60606;
+}
+
+@media (min-width: 992px) {
+	.single-post .single-post-content {
+		display: grid;
+		grid-template-columns: 600px 1fr;
+		column-gap: 40px;
+		column-gap: clamp(40px, 8vw, 80px);
+		padding-top: 60px;
+	}
+	.single-post .single-post-content h1 {
+		margin-top: 0;
+	}
+}
+
+.single-post h3 {
+	color: #c60606;
+	font-weight: 500;
+}
+
+.single-post .single-post-fallback-img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 200px;
+	height: 60vw;
+	max-height: 500px;
+	border: 1px solid #c60606;
+}
+
+.single-post .single-post-fallback-img img {
+	width: 120px;
 }
 
 .single-post .single-post-slider .single-post-slide a {

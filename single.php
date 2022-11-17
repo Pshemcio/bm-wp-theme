@@ -17,7 +17,7 @@ $fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null
 ?>
 
 <main id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
-	<section class='default-section'>
+	<section class='default-section single-post-content'>
 	<?php
 		if (isset($fields['gallery']) && $fields['gallery']): ?>
       <div id='single-post-slider' class="glide single-post-slider">
@@ -43,10 +43,15 @@ $fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null
         </div>
       </div>
     <?php else: ?>
-			<img src='<?php echo $fallback_img; ?>' class='single-post-fallback-img' />
+			<div class='single-post-fallback-img'>
+				<img src='<?php echo $fallback_img; ?>' />
+			</div>
     <?php endif; ?>
 		<div>
 			<h1><?php the_title_attribute(); ?></h1>
+			<?php if($fields['price']): ?>
+				<h3>Cena: od <?php echo $fields['price']; ?>zł</h3>
+    	<?php endif; ?>
 			<p>
 				<?php echo $current_category_text; ?>
 				<a href='<?php echo get_category_link($current_category[0]->term_id) ?>'>

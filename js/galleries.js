@@ -1,8 +1,7 @@
 /**
- * File navigation.js.
+ * File galleries.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Handles page galleries
  */
 ( function() {
 	const homeSlider = document.querySelector( '#home-header-slider' );
