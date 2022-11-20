@@ -14,4 +14,14 @@ body {
 
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
 	padding-top: var(--navbar-size);
+
+	#page {
+		min-height: calc(100vh - var(--navbar-size));
+		display: flex;
+		flex-direction: column;
+
+		main {
+			flex-grow: 1;
+		}
+	}
 }

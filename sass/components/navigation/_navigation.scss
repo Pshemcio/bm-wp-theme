@@ -169,7 +169,43 @@
 
 		.page_item,
 		.menu-item {
+			position: relative;
 			color: $color__text-main;
+
+			&:hover {
+				.sub-menu {
+					opacity: 1;
+					transform: translateX(-50%) scaleX(1);
+					transition: opacity 0.4s;
+					pointer-events: all;
+				}
+			}
+
+			.sub-menu {
+				position: absolute;
+				left: 50%;
+				top: 100%;
+				width: max-content;
+				margin: 0;
+				background-color: $color__white;
+				opacity: 0;
+				transform: translateX(-50%) scaleX(0);
+				transition: transform 0s 0.5s, opacity 0.4s;
+				pointer-events: none;
+				padding: 5px 10px;
+
+				a {
+					transition: color 0.4s;
+
+					&:hover {
+						color: $color__add1;
+					}
+
+					&::before {
+						display: none;
+					}
+				}
+			}
 
 			a {
 				display: block;

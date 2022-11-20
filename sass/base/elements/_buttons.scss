@@ -7,7 +7,7 @@ input[type='submit'],
 	border: 1px solid;
 	border-color: $color__white;
 	border-radius: 6px;
-	font-weight: 200;
+	font-weight: 300;
 	font-size: 18px;
 }
 
@@ -18,9 +18,13 @@ input[type='submit'],
 	color: $color__white;
 	line-height: 1;
 	padding: 0.6em 1em 0.4em;
-	font-size: 18px;
 	text-decoration: none;
 	padding: 12px 25px;
+	transition: background-color 0.4s, color 0.4s;
+
+	&::before {
+		display: none;
+	}
 
 	&:visited {
 		color: $color__white;
@@ -29,4 +33,17 @@ input[type='submit'],
 
 .primary-button {
 	background-color: transparent;
+
+	&:hover {
+		background-color: $color__add1;
+	}
+}
+
+.secondary-button {
+	border-color: $color__add1;
+
+	&:hover {
+		background-color: $color__white;
+		color: $color__add1;
+	}
 }

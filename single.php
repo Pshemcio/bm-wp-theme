@@ -14,6 +14,29 @@ $current_category_text = isset($options['current_category']) ? $options['current
 $current_category = get_the_category(get_the_ID());
 get_header();
 $fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null;
+
+$recent_posts_by_cat = wp_get_recent_posts(array(
+	'category' => $current_category[0]->term_id,
+	'numberposts' => 3,
+	'post_status' => 'publish',
+	'post__not_in' => array( $post->ID )
+));
+
+$recent_posts=[];
+
+foreach ( $recent_posts_by_cat as $post ) {
+	$gallery_field = get_field( "gallery", $post['ID'] );
+	$price_field = get_field( "price", $post['ID'] );
+	$first_gallery_img = $gallery_field ? $gallery_field[0] : false;
+
+  array_push($recent_posts, [
+    'ID'=>$post['ID'], 
+    'url'=>get_permalink($post['ID']),
+		'price'=>$price_field,
+    'img'=>$first_gallery_img,
+		'title'=>$post['post_title']
+  ]);
+}
 ?>
 
 <main id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
@@ -49,7 +72,7 @@ $fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null
     <?php endif; ?>
 		<div>
 			<h1><?php the_title_attribute(); ?></h1>
-			<?php if($fields['price']): ?>
+			<?php if(isset($fields['price'])): ?>
 				<h3>Cena: od <?php echo $fields['price']; ?>zł</h3>
     	<?php endif; ?>
 			<p>
@@ -59,23 +82,50 @@ $fallback_img = isset($options['fallback_img']) ? $options['fallback_img']: null
 				</a>
 			</p>
 			<?php if (isset($fields['description']) && $fields['description']): ?>
-				<div>
-					<h2>Opis</h2>
-					<div>
+				<div class='accordion accordion-opened' data-accordion>
+					<button class='accordion-header' data-accordion-trigger>Opis</button>
+					<div class='accordion-content'>
 						<?php echo $fields['description'] ?>
 					</div>
 				</div>
 			<?php endif; ?>
 			<?php if (isset($fields['add_info']) && $fields['add_info']): ?>
-				<div>
-					<h2>Dodatkowe informacje</h2>
-					<div>
+				<div class='accordion' data-accordion>
+					<button class='accordion-header' data-accordion-trigger>Dodatkowe informacje</button>
+					<div class='accordion-content'>
 						<?php echo $fields['add_info'] ?>
 					</div>
 				</div>
 			<?php endif; ?>
 		</div>
 	</section>
+	<div class='archive-page'>
+		<section class='default-section narrower archive-page-list'>
+			<?php if ($recent_posts): ?>
+				<ul>
+				<?php foreach ( $recent_posts as $post ): ?>
+					<li id="post-<?php $post['ID'] ?>" <?php post_class(); ?>>
+						<a href="<?php echo $post['url'] ?>" class="no-line">
+							<?php if ( $post['price'] ) : ?>
+								<small class='post-price'>Od <?php echo $post['price']; ?>zł</small>
+							<?php endif; ?>
+							<div class='post-image-wrapper'>
+								<?php if($post['img']) :?>
+									<img src='<?php echo $post['img']['url']; ?>' />
+								<?php else :?>
+									<div class='fallback-img'>
+										<img src='<?php echo $fallback_img; ?>' />
+									</div>
+								<?php endif; ?>
+							</div>
+							<span><?php echo $post['title']; ?></span>
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		</section>
+	<div>
 </main><!-- #post-<?php the_ID(); ?> -->
 
 <?php

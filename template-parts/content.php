@@ -19,13 +19,15 @@ $first_gallery_img = $gallery_field ? $gallery_field[0] : false;
 		<?php if ( $price_field ) : ?>
 			<small class='post-price'>Od <?php echo $price_field; ?>zł</small>
 		<?php endif; ?>
-		<?php if ( has_post_thumbnail() ) : ?>
-			<?php the_post_thumbnail(); ?>
-		<?php elseif($first_gallery_img) :?>
-			<img src='<?php echo $first_gallery_img['url']; ?>' />
-		<?php else :?>
-			<img src='<?php echo $fallback_img; ?>' class='fallback-img' />
-		<?php endif; ?>
+		<div class='post-image-wrapper'>
+			<?php if($first_gallery_img) :?>
+				<img src='<?php echo $first_gallery_img['url']; ?>' />
+			<?php else :?>
+				<div class='fallback-img'>
+					<img src='<?php echo $fallback_img; ?>' />
+				</div>
+			<?php endif; ?>
+		</div>
 		<span><?php the_title_attribute(); ?></span>
 	</a>
 </li><!-- #post-<?php the_ID(); ?> -->

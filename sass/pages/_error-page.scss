@@ -1,0 +1,51 @@
+.error-page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.error-page-inner {
+		max-width: 1000px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding-bottom: 50px;
+
+		@include breakpoint(sm) {
+			flex-direction: row;
+			padding: 20vh 30px;
+			text-align: left;
+		}
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 60px;
+		font-weight: 200;
+		line-height: 1em;
+		color: $color__add1;
+	}
+
+	h2 {
+		margin: 30px 0;
+		font-weight: 300;
+	}
+
+	.error-page-image {
+		max-height: 400px;
+		max-width: 400px;
+		margin: 40px auto 0;
+		border-radius: 20px;
+		overflow: hidden;
+
+		img {
+			display: block;
+		}
+
+		@include breakpoint(sm) {
+			margin-top: 0;
+			margin-left: 40px;
+			border-radius: 40px;
+		}
+	}
+}
