@@ -23,6 +23,7 @@ $recent_posts_by_cat = wp_get_recent_posts(array(
 ));
 
 $recent_posts=[];
+$title = get_the_title( get_the_ID() );
 
 foreach ( $recent_posts_by_cat as $post ) {
 	$gallery_field = get_field( "gallery", $post['ID'] );
@@ -71,7 +72,7 @@ foreach ( $recent_posts_by_cat as $post ) {
 			</div>
     <?php endif; ?>
 		<div>
-			<h1><?php the_title_attribute(); ?></h1>
+			<h1><?php echo $title; ?></h1>
 			<?php if(isset($fields['price'])): ?>
 				<h3>Cena: od <?php echo $fields['price']; ?>zł</h3>
     	<?php endif; ?>
