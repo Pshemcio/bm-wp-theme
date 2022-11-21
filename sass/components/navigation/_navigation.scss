@@ -96,12 +96,6 @@
 		}
 	}
 
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-
 	.main-burger {
 		$self: &;
 		position: relative;
@@ -157,13 +151,11 @@
 	}
 
 	.main-menu-inner {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		padding: 20px;
 
 		@include breakpoint(sm) {
-			flex-direction: row;
+			display: flex;
+			justify-content: center;
 			padding: 0;
 		}
 
@@ -172,29 +164,70 @@
 			position: relative;
 			color: $color__text-main;
 
+			&.menu-item-has-children {
+				& > a {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					&::after {
+						@include accordion-arrow;
+
+						@include breakpoint(sm) {
+							display: none;
+						}
+					}
+				}
+
+				&.focus {
+					& > a {
+						&::after {
+							@include accordion-arrow-rotated;
+						}
+					}
+				}
+			}
+
+			&.focus,
 			&:hover {
 				.sub-menu {
-					opacity: 1;
-					transform: translateX(-50%) scaleX(1);
-					transition: opacity 0.4s;
-					pointer-events: all;
+					display: block;
+				}
+			}
+
+			&:hover {
+				.sub-menu {
+					@include breakpoint(sm) {
+						opacity: 1;
+						transform: translateX(-50%) scaleX(1);
+						transition: opacity 0.4s;
+						pointer-events: all;
+					}
 				}
 			}
 
 			.sub-menu {
-				position: absolute;
-				left: 50%;
-				top: 100%;
-				width: max-content;
-				margin: 0;
-				background-color: $color__white;
-				opacity: 0;
-				transform: translateX(-50%) scaleX(0);
-				transition: transform 0s 0.5s, opacity 0.4s;
-				pointer-events: none;
-				padding: 5px 10px;
+				display: none;
+				margin: 0 0 0 20px;
+
+				@include breakpoint(sm) {
+					display: block;
+					position: absolute;
+					left: 50%;
+					top: 100%;
+					width: max-content;
+					background-color: $color__white;
+					opacity: 0;
+					margin: 0;
+					transform: translateX(-50%) scaleX(0);
+					transition: transform 0s 0.5s, opacity 0.4s;
+					pointer-events: none;
+					padding: 5px 10px;
+				}
 
 				a {
+					padding: 0;
+					font-size: 18px;
 					transition: color 0.4s;
 
 					&:hover {
@@ -211,7 +244,6 @@
 				display: block;
 				padding: 10px 10px 0;
 				margin-bottom: 10px;
-				text-align: center;
 				text-decoration: none;
 				font-size: 22px;
 				font-weight: 200;
@@ -221,12 +253,15 @@
 					font-size: 16px;
 					font-size: clamp(15px, 1.4vw, 17px);
 					font-weight: 300;
+					text-align: center;
 				}
 			}
+		}
 
-			&.current_page_item {
-				color: $color__add1;
-			}
+		.current_page_item,
+		.current_page_ancestor,
+		.current-menu-item {
+			color: $color__add1;
 		}
 	}
 }

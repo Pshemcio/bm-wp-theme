@@ -73,7 +73,7 @@ foreach ( $recent_posts_by_cat as $post ) {
     <?php endif; ?>
 		<div>
 			<h1><?php echo $title; ?></h1>
-			<?php if(isset($fields['price'])): ?>
+			<?php if(isset($fields['price']) && $fields['price']): ?>
 				<h3>Cena: od <?php echo $fields['price']; ?>zł</h3>
     	<?php endif; ?>
 			<p>
