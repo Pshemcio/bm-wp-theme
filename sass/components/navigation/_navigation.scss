@@ -188,8 +188,7 @@
 				}
 			}
 
-			&.focus,
-			&:hover {
+			&.focus {
 				.sub-menu {
 					display: block;
 				}
@@ -262,6 +261,16 @@
 		.current_page_ancestor,
 		.current-menu-item {
 			color: $color__add1;
+		}
+
+		.current_page_ancestor {
+			&::before {
+				display: none;
+
+				@include breakpoint(sm) {
+					display: block;
+				}
+			}
 		}
 	}
 }

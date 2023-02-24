@@ -1272,9 +1272,8 @@ textarea {
 	transform: rotate(90deg) rotateY(180deg);
 }
 
-.main-navigation .main-menu-inner .page_item.focus .sub-menu, .main-navigation .main-menu-inner .page_item:hover .sub-menu,
-.main-navigation .main-menu-inner .menu-item.focus .sub-menu,
-.main-navigation .main-menu-inner .menu-item:hover .sub-menu {
+.main-navigation .main-menu-inner .page_item.focus .sub-menu,
+.main-navigation .main-menu-inner .menu-item.focus .sub-menu {
 	display: block;
 }
 
@@ -1354,6 +1353,16 @@ textarea {
 .main-navigation .main-menu-inner .current_page_ancestor,
 .main-navigation .main-menu-inner .current-menu-item {
 	color: #c60606;
+}
+
+.main-navigation .main-menu-inner .current_page_ancestor::before {
+	display: none;
+}
+
+@media (min-width: 840px) {
+	.main-navigation .main-menu-inner .current_page_ancestor::before {
+		display: block;
+	}
 }
 
 .desktop-language-switcher {
@@ -2287,7 +2296,12 @@ textarea {
 }
 
 .single-post .single-post-slider .single-post-slide-bg {
+	width: 100%;
+	min-height: 260px;
+	height: 70vw;
+	max-height: 400px;
 	border-radius: 10px;
+	object-fit: cover;
 }
 
 .single-post .single-post-slider .single-post-slide-bullets {
@@ -2318,6 +2332,10 @@ textarea {
 
 .single-post .single-post-slider .single-post-slide-bullet:last-of-type {
 	margin-right: 0;
+}
+
+.single-post .main-heading {
+	margin-bottom: 30px;
 }
 
 .error-page {

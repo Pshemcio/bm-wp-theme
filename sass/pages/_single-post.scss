@@ -75,9 +75,14 @@
 			}
 		}
 
-		.single-post-slide-bg {
-			border-radius: 10px;
-		}
+    .single-post-slide-bg {
+			width: 100%;
+      min-height: 260px;
+      height: 70vw;
+      max-height: 400px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
 
 		.single-post-slide-bullets {
 			display: flex;
@@ -108,5 +113,9 @@
 				margin-right: 0;
 			}
 		}
+	}
+
+	.main-heading {
+		margin-bottom: 30px;
 	}
 }

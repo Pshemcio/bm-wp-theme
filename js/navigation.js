@@ -75,44 +75,27 @@
 
 	// Toggle focus each time a menu link is focused or blurred.
 	for (const link of links) {
-		link.addEventListener('focus', toggleFocus, true);
-		link.addEventListener('blur', toggleFocus, true);
 		link.addEventListener('click', (e) => {
-			if (e.target?.href.includes('#')) siteNavigation.classList.toggle('toggled');
+			if (e.target?.href.includes('#')) {
+				siteNavigation.classList.toggle('toggled');
+				linksWithChildren.forEach((link) => link.closest('li').classList.remove('focus'));
+			}
 		});
-	}
-
-	// Toggle focus each time a menu link with children receive a touch event.
-	for (const link of linksWithChildren) {
-		link.addEventListener('touchstart', toggleFocus, false);
 	}
 
 	/**
 	 * Sets or removes .focus class on an element.
 	 */
-	function toggleFocus() {
-		if (event.type === 'focus' || event.type === 'blur') {
-			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while (!self.classList.contains('nav-menu')) {
-				// On li elements toggle the class .focus.
-				if ('li' === self.tagName.toLowerCase()) {
-					self.classList.toggle('focus');
-				}
-				self = self.parentNode;
-			}
+	const toggleFocus = (e) => {
+		if (window.innerWidth < 840) {
+			e.preventDefault();
+			e.target.closest('li').classList.toggle('focus');
 		}
+	};
 
-		if (event.type === 'touchstart') {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for (const link of menuItem.parentNode.children) {
-				if (menuItem !== link) {
-					link.classList.remove('focus');
-				}
-			}
-			menuItem.classList.toggle('focus');
-		}
+	// Toggle focus each time a menu link with children receive a touch event.
+	for (const link of linksWithChildren) {
+		link.addEventListener('touchstart', toggleFocus);
 	}
 
 	const accordions = document.querySelectorAll('[data-accordion]');
@@ -122,6 +105,4 @@
 			accordion.classList.toggle('accordion-opened');
 		});
 	});
-
-	console.log(accordions);
 })();

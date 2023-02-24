@@ -53,18 +53,22 @@ foreach ( $recent_posts_by_cat as $post ) {
               </li>
             <?php endforeach; ?>
           </ul>
-					<div class="glide__arrows" data-glide-el="controls">
-						<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-						<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+					<?php if( count($fields['gallery']) > 1 ): ?>
+						<div class="glide__arrows" data-glide-el="controls">
+							<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+							<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+						</div>
+					<?php endif; ?>
+        </div>
+				<?php if( count($fields['gallery']) > 1 ): ?>
+					<div class="glide__bullets single-post-slide-bullets" data-glide-el="controls[nav]">
+						<?php foreach ( $fields['gallery'] as $key=>$field ): ?>
+							<button class="glide__bullet single-post-slide-bullet" data-glide-dir="=<?php echo $key ?>">
+								<img src='<?php echo $field['url']; ?>' />
+							</button>
+						<?php endforeach; ?>
 					</div>
-        </div>
-        <div class="glide__bullets single-post-slide-bullets" data-glide-el="controls[nav]">
-          <?php foreach ( $fields['gallery'] as $key=>$field ): ?>
-            <button class="glide__bullet single-post-slide-bullet" data-glide-dir="=<?php echo $key ?>">
-							<img src='<?php echo $field['url']; ?>' />
-						</button>
-          <?php endforeach; ?>
-        </div>
+				<?php endif; ?>
       </div>
     <?php else: ?>
 			<div class='single-post-fallback-img'>
@@ -102,6 +106,9 @@ foreach ( $recent_posts_by_cat as $post ) {
 	</section>
 	<div class='archive-page'>
 		<section class='default-section narrower archive-page-list'>
+			<?php if(isset($options['related_offers']) && $options['related_offers']): ?>
+				<h1 class='main-heading'><span><?php echo $options['related_offers'] ?></span></h1>
+			<?php endif ?>
 			<?php if ($recent_posts): ?>
 				<ul>
 				<?php foreach ( $recent_posts as $post ): ?>

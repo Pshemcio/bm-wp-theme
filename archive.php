@@ -11,6 +11,10 @@ get_header();
 $category = get_category( get_query_var( 'cat' ) );
 $thumbnail = get_field( 'img', $category->taxonomy . '_' . $category->term_id );
 $description = get_field( 'description', $category->taxonomy . '_' . $category->term_id );
+$args = array(
+	'orderby' => 'name',
+	'order' => 'ASC',
+); 
 ?>
 	<main id="primary" class="site-main archive-page">
 		<div class='page-header'>
@@ -23,6 +27,7 @@ $description = get_field( 'description', $category->taxonomy . '_' . $category->
 			</section>
 		<?php endif; ?>
 		<section class='default-section narrower archive-page-list'>
+			<?php query_posts($args); ?>
 			<?php if (have_posts()): ?>
 				<ul>
 				<?php while ( have_posts() ) :
